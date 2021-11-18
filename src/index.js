@@ -49,7 +49,6 @@ function App() {
 function main() {
     const doc = document
     let toggleOn = false;
-
     render(<App/>, doc.querySelector('#app'))
 
     logseq.provideModel({
