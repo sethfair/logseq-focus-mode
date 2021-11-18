@@ -1,0 +1,44 @@
+{
+  "name": "logseq-focus-mode",
+  "version": "0.0.1",
+  "description": "Focus mode for Logseq.",
+  "main": "dist/index.html",
+  "author": "Seth Fair",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development"
+  },
+  "dependencies": {
+    "@logseq/libs": "^0.0.1-alpha.31",
+    "boxicons": "^2.0.9",
+    "preact": "^10.5.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1"
+  },
+  "logseq": {
+    "icon": "./icon.png",
+    "id": "logseq-focus"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "@svgr/webpack": "^5.5.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "parcel-bundler": "^1.12.5",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.4.0"
+  },
+  "browserslist": [
+    "chrome 80"
+  ]
+}
