@@ -102,15 +102,13 @@ function main() {
     const id = logseq.baseInfo.id
 
     logseq.provideStyle(`
-        @import url("https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css");
-        
         .logseq-focus-toolbar {
           display: flex;
           border-radius: 5px;
         }
         
         .logseq-focus-toolbar a.button {
-          padding: 0;
+          padding: 0;   
           margin: 0;
         }
   `)
@@ -132,14 +130,14 @@ function main() {
                    class="button"
                    data-rect
                 >
-                    <i class="bx bx-expand-alt"></i>
+                    <i class="ti ti-maximize"></i>
                 </a>
                  <a
                    data-on-click="openFontsPanel"
                    class="button"
                    data-rect
                 >
-                    <i class="bx bx-dots-vertical-rounded"></i>
+                    <i class="ti ti-dots-vertical"></i>
                 </a>
         </span>
     `,

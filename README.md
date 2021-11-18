@@ -1,4 +1,5 @@
 ![Screen Shot](demo.gif)
+![Screen Shot](screen2.gif)
 # Focus Mode
 The focus mode plugin allows you to quickly toggle into fullscreen mode and hide elements like the sidebar or properties section.
 
