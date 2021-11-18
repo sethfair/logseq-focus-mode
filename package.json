@@ -1,7 +1,7 @@
 {
   "name": "logseq-focus-mode",
   "version": "0.0.1",
-  "description": "Focus mode for Logseq.",
+  "description": "A Focus mode plugin for Logseq.",
   "main": "dist/index.html",
   "author": "Seth Fair",
   "scripts": {
