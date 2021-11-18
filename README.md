@@ -1,5 +1,5 @@
-<img alt="screen shot" src="https://raw.githubusercontent.com/sethfair/logseq-focus-mode/main/demo.png" width="200"/><br/>
-<img alt="screen shot" src="https://raw.githubusercontent.com/sethfair/logseq-focus-mode/main/screen2.png" width="200"/>
+<img alt="screen shot" src="https://raw.githubusercontent.com/sethfair/logseq-focus-mode/main/screen1.png"/><br/>
+<img alt="screen shot" src="https://raw.githubusercontent.com/sethfair/logseq-focus-mode/main/screen2.png"/>
 
 # Focus Mode
 The focus mode plugin allows you to quickly toggle into fullscreen mode and hide elements like the sidebar or properties section.
