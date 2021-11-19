@@ -96,10 +96,6 @@ function main() {
         },
     )
 
-
-
-    const id = logseq.baseInfo.id
-
     logseq.provideStyle(`
         .logseq-focus-toolbar {
           display: flex;
