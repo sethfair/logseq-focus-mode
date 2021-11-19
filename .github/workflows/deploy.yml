@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+env:
+  PLUGIN_NAME: logseq-focus-mode
 jobs:
   deploy:
     runs-on: ubuntu-latest
