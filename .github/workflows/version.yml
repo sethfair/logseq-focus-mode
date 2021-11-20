@@ -9,7 +9,7 @@ env:
 jobs:
   version:
     runs-on: ubuntu-latest
-    if: "startsWith(github.event.head_commit.message, '[VERSION]')"
+    if: "startsWith(github.event.head_commit.message, '[VERSION-RELEASE]')"
     steps:
       - uses: actions/checkout@v2
         with:
