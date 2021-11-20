@@ -10,7 +10,7 @@
     "release:patch": "npm version patch -m '[RELEASE] patch version %s'",
     "release:minor": "npm version minor -m '[RELEASE] minor version %s'",
     "release:major": "npm version major -m '[RELEASE] major version %s'",
-    "postversion": "git push && git push --tags && rm -rf build/temp"
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "@logseq/libs": "^0.0.1-alpha.31",
