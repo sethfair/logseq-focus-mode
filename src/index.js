@@ -1,8 +1,6 @@
 /** @jsx h */
 import '@logseq/libs'
-
 import './index.css';
-
 import {h, render} from 'preact'
 import {useEffect, useState} from 'preact/hooks'
 
@@ -119,23 +117,22 @@ function main() {
         {
             key: 'logseq-focus-toolbar',
             template: `
-        <span class="logseq-focus-toolbar">
-                <a
-                   data-on-click="toggleFocus"
-                   class="button"
-                   data-rect
-                >
-                    <i class="ti ti-maximize"></i>
-                </a>
-                 <a
-                   data-on-click="openFontsPanel"
-                   class="button"
-                   data-rect
-                >
-                    <i class="ti ti-dots-vertical"></i>
-                </a>
-        </span>
-    `,
+                <span class="logseq-focus-toolbar">
+                        <a
+                           data-on-click="toggleFocus"
+                           class="button"
+                           data-rect
+                        >
+                            <i class="ti ti-maximize"></i>
+                        </a>
+                         <a
+                           data-on-click="openFontsPanel"
+                           class="button"
+                           data-rect
+                        >
+                            <i class="ti ti-dots-vertical"></i>
+                        </a>
+                </span>`
         })
 
     document.addEventListener('keydown', function (e) {
@@ -145,10 +142,5 @@ function main() {
     }, false)
 }
 
-
 // bootstrap
 logseq.ready(main).catch(console.error)
-
-
-
-
