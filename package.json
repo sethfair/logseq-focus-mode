@@ -7,9 +7,9 @@
   "scripts": {
     "build": "webpack --mode=production",
     "watch": "webpack --watch --mode=development",
-    "create:patch": "npm version patch -m '[RELEASE] increment patch version %s'",
-    "create:minor": "npm version minor -m '[RELEASE] increment minor version %s'",
-    "create:major": "npm version major -m '[RELEASE] increment major version %s'"
+    "create:patch": "npm version patch -m '[RELEASE] increment patch version'",
+    "create:minor": "npm version minor -m '[RELEASE] increment minor version'",
+    "create:major": "npm version major -m '[RELEASE] increment major version'"
   },
   "dependencies": {
     "@logseq/libs": "^0.0.1-alpha.31",
