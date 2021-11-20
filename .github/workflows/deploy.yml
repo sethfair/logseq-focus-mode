@@ -37,6 +37,8 @@ jobs:
           cp README.md package.json icon.png screen1.png screen2.png LICENSE ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
+          ls
+          echo "::set-output name=tag_name::$($RELEASE_VERSION)"
 
       - name: Create Release
         id: create_release
