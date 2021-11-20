@@ -17,6 +17,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "14.x" # You might need to adjust this value to your own version
+      - uses: actions/checkout@v2
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.vars.outputs.tag }}
       - name: Build
         id: build
         run: |
@@ -27,18 +37,16 @@ jobs:
           cp README.md package.json icon.png screen1.png screen2.png LICENSE ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
-          ls
-          echo "::set-output name=tag_name::$(git tag --sort version:refname | tail -n 1)"
 
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ APP_VERSION }}
+          VERSION: $RELEASE_VERSION
         with:
-          tag_name: "v${{ APP_VERSION }}"
-          release_name: "v${{ APP_VERSION }}"
+          tag_name: $RELEASE_VERSION
+          release_name: $RELEASE_VERSION
           draft: false
           prerelease: false
 
