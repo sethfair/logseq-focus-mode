@@ -51,36 +51,46 @@ function main() {
 
     logseq.provideModel({
             toggleLeftSideBar() {
-                window.parent.dispatchEvent(new KeyboardEvent('keydown', {
-                    'key': 't'
-                }));
-                window.parent.dispatchEvent(new KeyboardEvent('keydown', {
-                    'key': 'l'
-                }));
+                if (toggleOn && logseq.settings.hide_sidebar) {
+                    logseq.provideStyle(`
+                      html.is-fullscreen #main-content.is-left-sidebar-open {
+                            padding-left: 0;
+                      }
+                      
+                      html.is-fullscreen #sidebar-nav-wrapper.is-open {
+                        transform: translateX(-100%);
+                      }
+                    `)
+                } else {
+                    logseq.provideStyle(`
+                      html.is-fullscreen #main-content.is-left-sidebar-open, #main-content.is-left-sidebar-open {
+                            padding-left: var(--ls-left-sidebar-width);
+                      }
+                  
+                      html.is-fullscreen #sidebar-nav-wrapper.is-open, #sidebar-nav-wrapper.is-open {
+                        transform: translateX(0%);
+                      }
+                    `)
+                }
             },
 
             toggleFocus() {
-                this.initSettings();
-            },
-
-            initSettings() {
                 toggleOn = !toggleOn
                 const {go_fullscreen, hide_sidebar, hide_properties} = logseq.settings;
                 if (go_fullscreen) {
                     logseq.App.setFullScreen(toggleOn);
                 }
 
-                if (hide_sidebar) {
-                    this.toggleLeftSideBar();
+                this.toggleLeftSideBar();
+
+                if (hide_properties) {
+                    logseq.provideStyle(`
+                      html.is-fullscreen .pre-block {
+                        display: ${toggleOn ? 'none' : 'block'}
+                      }
+                   `);
                 }
-
-                logseq.provideStyle(`
-                  .pre-block {
-                    display: ${hide_properties && toggleOn ? 'none' : 'block'}
-                  }
-               `);
             },
-
             openFontsPanel(e) {
                 const {rect} = e
 
