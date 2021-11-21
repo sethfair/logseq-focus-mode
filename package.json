@@ -19,7 +19,7 @@
   },
   "logseq": {
     "icon": "./icon.png",
-    "id": "test-logseq-focus"
+    "id": "logseq-focus"
   },
   "license": "MIT",
   "devDependencies": {
