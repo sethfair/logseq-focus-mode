@@ -53,11 +53,11 @@ function main() {
             toggleLeftSideBar() {
                 if (toggleOn && logseq.settings.hide_sidebar) {
                     logseq.provideStyle(`
-                      html.is-fullscreen #main-content.is-left-sidebar-open {
+                      #main-content.is-left-sidebar-open {
                             padding-left: 0;
                       }
                       
-                      html.is-fullscreen #sidebar-nav-wrapper.is-open {
+                      #sidebar-nav-wrapper.is-open {
                         transform: translateX(-100%);
                       }
                     `)
