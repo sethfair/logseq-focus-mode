@@ -960,10 +960,10 @@
   "resolved" "https://registry.npmjs.org/@iarna/toml/-/toml-2.2.5.tgz"
   "version" "2.2.5"
 
-"@logseq/libs@^0.0.1-alpha.31":
-  "integrity" "sha512-OkhmQ2ERcRS8P4jXlUs2JC/r93DSJno0RGM24g+nqdlb68V7iyE3Mc/ZSYaPA3DGs8ZyrWP0zyn+DPs+TqaiEw=="
-  "resolved" "https://registry.npmjs.org/@logseq/libs/-/libs-0.0.1-alpha.31.tgz"
-  "version" "0.0.1-alpha.31"
+"@logseq/libs@^0.0.1-alpha.32":
+  "integrity" "sha512-gs+cILdREq6By4K/2tFWE2oW4QU4SbyhUwGRMSMHXfrm7WSPL+hsUenoHLBOF9Koam+RbRzM5/SohDDoPIGNNg=="
+  "resolved" "https://registry.npmjs.org/@logseq/libs/-/libs-0.0.1-alpha.32.tgz"
+  "version" "0.0.1-alpha.32"
   dependencies:
     "csstype" "^3.0.8"
     "debug" "^4.3.1"

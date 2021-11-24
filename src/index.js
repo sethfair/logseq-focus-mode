@@ -29,15 +29,30 @@ function App() {
 
     return (
         <div>
-            <div className={"title"}>Focus Mode</div>
-            <OptionCheck name="hide_sidebar" label="Hide Sidebar"/>
-            <OptionCheck name="go_fullscreen" label="Go Fullscreen"/>
-            <OptionCheck name="hide_properties" label="Hide Properties"/>
+            <div className={"title"}>Focus Mode Settings</div>
+
+            <fieldset>
+                <legend>On Toggle</legend>
+                <OptionCheck name="go_fullscreen" label="Fullscreen Mode"/>
+                <OptionCheck name="hide_properties" label="Page Properties"/>
+            </fieldset>
+
+            <fieldset>
+                <legend>On Focus</legend>
+                <OptionCheck name="hide_sidebar" label="Hide Left Sidebar"/>
+                <OptionCheck name="hide_right_sidebar" label="Hide Right Sidebar"/>
+            </fieldset>
+
+            <fieldset>
+                <legend>On Unfocus</legend>
+                <OptionCheck name="open_left_sidebar_on_unfocus" label="Show Left Sidebar"/>
+                <OptionCheck name="open_right_sidebar_on_unfocus" label="Show Right Sidebar"/>
+            </fieldset>
 
             <p className="ctl">
                 <button onClick={() => {
                     logseq.hideMainUI()
-                }}>Close
+                }}>Close Settings
                 </button>
             </p>
         </div>
@@ -50,40 +65,34 @@ function main() {
     render(<App/>, doc.querySelector('#app'))
 
     logseq.provideModel({
-            toggleLeftSideBar() {
-                if (toggleOn && logseq.settings.hide_sidebar) {
-                    logseq.provideStyle(`
-                      #main-content.is-left-sidebar-open {
-                            padding-left: 0;
-                      }
-                      
-                      #sidebar-nav-wrapper.is-open {
-                        transform: translateX(-100%);
-                      }
-                    `)
-                } else {
-                    logseq.provideStyle(`
-                      html.is-fullscreen #main-content.is-left-sidebar-open, #main-content.is-left-sidebar-open {
-                            padding-left: var(--ls-left-sidebar-width);
-                      }
-                  
-                      html.is-fullscreen #sidebar-nav-wrapper.is-open, #sidebar-nav-wrapper.is-open {
-                        transform: translateX(0%);
-                      }
-                    `)
-                }
-            },
 
             toggleFocus() {
-                toggleOn = !toggleOn
-                const {go_fullscreen, hide_sidebar, hide_properties} = logseq.settings;
-                if (go_fullscreen) {
+                toggleOn = !toggleOn;
+
+                if (toggleOn) {
+                    if (logseq.settings.hide_sidebar) {
+                        logseq.App.setLeftSidebarVisible(false);
+                    }
+                    if (logseq.settings.hide_right_sidebar) {
+                        logseq.App.setRightSidebarVisible(false);
+                    }
+                }
+
+                if (!toggleOn) {
+                    if (logseq.settings.open_left_sidebar_on_unfocus) {
+                        logseq.App.setLeftSidebarVisible(true);
+                    }
+
+                    if (logseq.settings.open_right_sidebar_on_unfocus) {
+                        logseq.App.setRightSidebarVisible(true);
+                    }
+                }
+
+                if (logseq.settings.go_fullscreen) {
                     logseq.App.setFullScreen(toggleOn);
                 }
 
-                this.toggleLeftSideBar();
-
-                if (hide_properties) {
+                if (logseq.settings.hide_properties) {
                     logseq.provideStyle(`
                       html.is-fullscreen .pre-block {
                         display: ${toggleOn ? 'none' : 'block'}
@@ -95,8 +104,8 @@ function main() {
                 const {rect} = e
 
                 logseq.setMainUIInlineStyle({
-                    top: `${rect.top + 20}px`,
-                    left: `${rect.right - 10}px`,
+                    top: `${rect.top + 25}px`,
+                    left: `${rect.right - 17}px`,
                 })
 
                 logseq.toggleMainUI()
@@ -122,6 +131,19 @@ function main() {
         zIndex: 999,
         transform: 'translateX(-50%)',
     })
+
+    /*
+    logseq.App.registerCommandPalette({
+        key: 'toggle_focus_mode_keyboard',
+        label: 'Toggle Focus Mode',
+        keybinding: {
+            mode: 'global',
+            binding: 'f f'
+        }
+    }, () => {
+        console.log('keyboard toggle happend');
+    })
+    */
 
     logseq.App.registerUIItem('toolbar',
         {
