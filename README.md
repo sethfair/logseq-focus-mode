@@ -5,7 +5,7 @@
 The purpose of the Focus Mode plugin is to quickly switch into a distraction-free mode or "zen" mode.  This plugin allows you to quickly toggle into fullscreen mode and hide elements like the sidebar or properties section.
 
 # Options
-> You must configure the focus plugin before using it by clicking on the options you want to change, otherwise nothing will be affected.
+> ⚠️ REQUIRED: You must configure the focus plugin before using it by clicking on the options you want to change, otherwise nothing will be affected.
 
 |Name | Mode | Description |
 | :---        |    :----  |          :--- |
