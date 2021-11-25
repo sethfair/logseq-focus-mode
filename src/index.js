@@ -64,8 +64,7 @@ function main() {
     let toggleOn = false;
     render(<App/>, doc.querySelector('#app'))
 
-    logseq.provideModel({
-
+    const model = {
             toggleFocus() {
                 toggleOn = !toggleOn;
 
@@ -110,8 +109,8 @@ function main() {
 
                 logseq.toggleMainUI()
             },
-        },
-    )
+        };
+    logseq.provideModel(model)
 
     logseq.provideStyle(`
         .logseq-focus-toolbar {
@@ -132,18 +131,15 @@ function main() {
         transform: 'translateX(-50%)',
     })
 
-    /*
     logseq.App.registerCommandPalette({
-        key: 'toggle_focus_mode_keyboard',
-        label: 'Toggle Focus Mode',
+        key: 'toggle_focus_mode_shortcut',
+        label: 'Toggle Focus Mode Keyboard Shortcut',
         keybinding: {
-            mode: 'global',
             binding: 'f f'
         }
     }, () => {
-        console.log('keyboard toggle happend');
-    })
-    */
+        model.toggleFocus();
+    });
 
     logseq.App.registerUIItem('toolbar',
         {
