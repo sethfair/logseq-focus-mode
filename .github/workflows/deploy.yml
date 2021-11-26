@@ -24,7 +24,7 @@ jobs:
           yarn
           yarn build
           mkdir ${{ env.PLUGIN_NAME }}
-          cp README.md package.json icon.png screen1.png screen2.png LICENSE ${{ env.PLUGIN_NAME }}
+          cp README.md package.json icon.png screen1.png screen2.gif LICENSE ${{ env.PLUGIN_NAME }}
           mv dist ${{ env.PLUGIN_NAME }}
           zip -r ${{ env.PLUGIN_NAME }}.zip ${{ env.PLUGIN_NAME }}
           ls
