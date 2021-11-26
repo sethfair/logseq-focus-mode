@@ -90,6 +90,10 @@ fieldset legend {
   padding: 5px;
 }
 
+fieldset p {
+  margin-top: 0;
+}
+
 .hotkeybox {
   border: 1px solid #ccc;
   width: 95%;
