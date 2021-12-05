@@ -1,0 +1,1 @@
+/*! For license information please see lsplugin.user.js.LICENSE.txt */

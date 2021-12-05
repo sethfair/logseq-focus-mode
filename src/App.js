@@ -2,6 +2,7 @@ import React from "preact/compat";
 import {useEffect, useState} from "preact/hooks";
 import HotkeyEditor from "./HotkeyEditor";
 import OptionCheck from "./OptionCheck";
+import {model} from "./main";
 
 const App = () => {
     const [settings, setSettings] = useState({})
@@ -12,16 +13,24 @@ const App = () => {
 
     useEffect(() => {
         logseq.updateSettings(settings);
+        setTimeout(() => {
+            model.toggleFocus(false);
+        }, 200)
     }, [settings]);
 
     return (
         <div>
             <div className={"title"}>Focus Mode Settings</div>
+            <fieldset>
+                <legend>On Startup</legend>
+                <OptionCheck checked={settings['focus_on_startup']} setSettings={setSettings} name="focus_on_startup" label="Enter Focus Mode"/>
+            </fieldset>
 
             <fieldset>
                 <legend>On Toggle</legend>
                 <OptionCheck checked={settings['go_fullscreen']} setSettings={setSettings} name="go_fullscreen" label="Fullscreen Mode"/>
                 <OptionCheck checked={settings['hide_properties']} setSettings={setSettings} name="hide_properties" label="Page Properties"/>
+                <OptionCheck checked={settings['line_highlight']} setSettings={setSettings} name="line_highlight" label="Line Highlight"/>
             </fieldset>
 
             <fieldset>

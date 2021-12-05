@@ -3,21 +3,58 @@ import {h, render} from 'preact'
 import App from "./App";
 import { updateLogseqState } from './util';
 
-const main = () => {
+export let model;
+const main = (inFocusMode = false) => {
     const doc = document
-    let toggleOn = false;
+    let toggleOn = inFocusMode;
+
+    if (logseq.settings.focus_on_startup) {
+        logseq.App.setFullScreen(logseq.settings.go_fullscreen);
+    } else {
+        logseq.App.setFullScreen(false);
+    }
+
+
     render(<App/>, doc.querySelector('#app'))
 
-    const model = {
-        toggleFocus() {
-            toggleOn = !toggleOn;
+    model = {
+        toggleFocus(toggle = true) {
+            console.log('toggle focus');
 
-            if (toggleOn) {
-                if (logseq.settings.hide_sidebar) {
-                    logseq.App.setLeftSidebarVisible(false);
+            if (toggle) {
+                toggleOn = !toggleOn;
+
+                if (logseq.settings.go_fullscreen) {
+                    logseq.App.setFullScreen(toggleOn);
                 }
-                if (logseq.settings.hide_right_sidebar) {
-                    logseq.App.setRightSidebarVisible(false);
+            }
+console.log('toggle on', toggleOn);
+            if (toggleOn) {
+                logseq.App.setLeftSidebarVisible(!logseq.settings.hide_sidebar);
+                logseq.App.setRightSidebarVisible(!logseq.settings.hide_right_sidebar);
+
+                if(logseq.settings.line_highlight) {
+                    console.log('line highlight on', logseq.settings.line_highlight);
+                    logseq.provideStyle(`
+                    .block-content-wrapper {
+                      opacity: 35%;
+                    }
+                    
+                    .editor-wrapper {
+                      opacity: 100%;
+                    }
+                   `)
+                } else {
+                    console.log('line highlight off', logseq.settings.line_highlight);
+                    logseq.provideStyle(`
+                    .block-content-wrapper {
+                      opacity: 100%;
+                    }
+                    
+                    .editor-wrapper {
+                      opacity: 100%;
+                    }
+                   `)
                 }
             }
 
@@ -29,10 +66,19 @@ const main = () => {
                 if (logseq.settings.open_right_sidebar_on_unfocus) {
                     logseq.App.setRightSidebarVisible(true);
                 }
-            }
 
-            if (logseq.settings.go_fullscreen) {
-                logseq.App.setFullScreen(toggleOn);
+                if(logseq.settings.line_highlight) {
+                    console.log('unfocus line highlight off', logseq.settings.line_highlight);
+                    logseq.provideStyle(`
+                    .block-content-wrapper {
+                      opacity: 100%;
+                    }
+                    
+                    .editor-wrapper {
+                      opacity: 100%;
+                    }
+                   `)
+                }
             }
 
             if (logseq.settings.hide_properties) {
@@ -40,7 +86,7 @@ const main = () => {
                       html.is-fullscreen .pre-block {
                         display: ${toggleOn ? 'none' : 'block'}
                       }
-                   `);
+                `);
             }
         },
         openFontsPanel(e) {
