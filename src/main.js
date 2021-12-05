@@ -14,12 +14,10 @@ const main = (inFocusMode = false) => {
         logseq.App.setFullScreen(false);
     }
 
-
     render(<App/>, doc.querySelector('#app'))
 
     model = {
         toggleFocus(toggle = true) {
-            console.log('toggle focus');
 
             if (toggle) {
                 toggleOn = !toggleOn;
@@ -28,10 +26,15 @@ const main = (inFocusMode = false) => {
                     logseq.App.setFullScreen(toggleOn);
                 }
             }
-console.log('toggle on', toggleOn);
+
             if (toggleOn) {
-                logseq.App.setLeftSidebarVisible(!logseq.settings.hide_sidebar);
-                logseq.App.setRightSidebarVisible(!logseq.settings.hide_right_sidebar);
+                if (logseq.settings.hide_sidebar) {
+                    logseq.App.setLeftSidebarVisible(false);
+                }
+
+                if (logseq.settings.hide_right_sidebar) {
+                    logseq.App.setRightSidebarVisible(false);
+                }
 
                 if(logseq.settings.line_highlight) {
                     console.log('line highlight on', logseq.settings.line_highlight);
@@ -47,11 +50,11 @@ console.log('toggle on', toggleOn);
                 } else {
                     console.log('line highlight off', logseq.settings.line_highlight);
                     logseq.provideStyle(`
-                    .block-content-wrapper {
+                    .block-content-wrapper, .bullet-container  {
                       opacity: 100%;
                     }
                     
-                    .editor-wrapper {
+                    .editor-wrapper, .editor-wrapper .bullet-container {
                       opacity: 100%;
                     }
                    `)
