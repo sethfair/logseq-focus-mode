@@ -59,6 +59,28 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 }
+
+                if(logseq.settings.hide_topbar) {
+                    console.log('top bar', logseq.settings.hide_topbar);
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 0;  
+                    }
+                   `)
+                } else {
+                    console.log('top bar shown', logseq.settings.hide_topbar);
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 1;  
+                    }
+                   `)
+                }
             }
 
             if (!toggleOn) {
@@ -79,6 +101,18 @@ const main = (inFocusMode = false) => {
                     
                     .editor-wrapper {
                       opacity: 100%;
+                    }
+                   `)
+                }
+                
+                if(logseq.settings.hide_topbar) {
+                    console.log('unfocus, top bar shown', logseq.settings.hide_topbar);
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 0;  
                     }
                    `)
                 }
