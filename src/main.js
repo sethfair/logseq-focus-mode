@@ -37,7 +37,6 @@ const main = (inFocusMode = false) => {
                 }
 
                 if(logseq.settings.line_highlight) {
-                    console.log('line highlight on', logseq.settings.line_highlight);
                     logseq.provideStyle(`
                     .block-content-wrapper {
                       opacity: 35%;
@@ -48,7 +47,6 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 } else {
-                    console.log('line highlight off', logseq.settings.line_highlight);
                     logseq.provideStyle(`
                     .block-content-wrapper, .bullet-container  {
                       opacity: 100%;
