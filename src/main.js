@@ -61,7 +61,7 @@ const main = (inFocusMode = false) => {
                 }
 
                 if(logseq.settings.hide_topbar) {
-                    console.log('top bar', logseq.settings.hide_topbar);
+                    console.log('top bar hidden', logseq.settings.hide_topbar);
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
@@ -112,7 +112,7 @@ const main = (inFocusMode = false) => {
                         opacity: 1; 
                       }
                     div#head {
-                        opacity: 0;  
+                        opacity: 1;  
                     }
                    `)
                 }
