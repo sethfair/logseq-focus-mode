@@ -59,6 +59,26 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 }
+
+                if(logseq.settings.hide_topbar) {
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 0;  
+                    }
+                   `)
+                } else {
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 1;  
+                    }
+                   `)
+                }
             }
 
             if (!toggleOn) {
@@ -71,7 +91,6 @@ const main = (inFocusMode = false) => {
                 }
 
                 if(logseq.settings.line_highlight) {
-                    console.log('unfocus line highlight off', logseq.settings.line_highlight);
                     logseq.provideStyle(`
                     .block-content-wrapper {
                       opacity: 100%;
@@ -79,6 +98,17 @@ const main = (inFocusMode = false) => {
                     
                     .editor-wrapper {
                       opacity: 100%;
+                    }
+                   `)
+                }
+                
+                if(logseq.settings.hide_topbar) {
+                    logseq.provideStyle(`
+                    div#head:hover {
+                        opacity: 1; 
+                      }
+                    div#head {
+                        opacity: 1;  
                     }
                    `)
                 }
