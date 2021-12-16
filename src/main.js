@@ -61,7 +61,6 @@ const main = (inFocusMode = false) => {
                 }
 
                 if(logseq.settings.hide_topbar) {
-                    console.log('top bar hidden', logseq.settings.hide_topbar);
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
@@ -71,7 +70,6 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 } else {
-                    console.log('top bar shown', logseq.settings.hide_topbar);
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
@@ -93,7 +91,6 @@ const main = (inFocusMode = false) => {
                 }
 
                 if(logseq.settings.line_highlight) {
-                    console.log('unfocus line highlight off', logseq.settings.line_highlight);
                     logseq.provideStyle(`
                     .block-content-wrapper {
                       opacity: 100%;
@@ -106,7 +103,6 @@ const main = (inFocusMode = false) => {
                 }
                 
                 if(logseq.settings.hide_topbar) {
-                    console.log('unfocus, top bar shown', logseq.settings.hide_topbar);
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
