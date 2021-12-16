@@ -31,6 +31,7 @@ const App = () => {
                 <OptionCheck checked={settings['go_fullscreen']} setSettings={setSettings} name="go_fullscreen" label="Fullscreen Mode"/>
                 <OptionCheck checked={settings['hide_properties']} setSettings={setSettings} name="hide_properties" label="Page Properties"/>
                 <OptionCheck checked={settings['line_highlight']} setSettings={setSettings} name="line_highlight" label="Line Highlight"/>
+                <OptionCheck checked={settings['hide_topbar']} setSettings={setSettings} name="hide_topbar" label="Hide Topbar"/>
             </fieldset>
 
             <fieldset>
