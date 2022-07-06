@@ -6,3 +6,15 @@ export const updateLogseqState = (values) => {
 
     logseq.updateSettings(newState);
 }
+
+export const stateContains = (state, value) => {
+    return logseq.settings && logseq.settings[state] && logseq.settings[state].includes(value);
+}
+
+export const toggleElement = (elm) => {
+    if (elm.style.display === "none") {
+        elm.style.display = "block";
+    } else {
+        elm.style.display = "none";
+    }
+}

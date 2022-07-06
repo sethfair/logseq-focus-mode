@@ -1,42 +1,35 @@
-import React from "preact/compat";
-import {h, render} from 'preact'
-import App from "./App";
 import { updateLogseqState } from './util';
+import { settingUI } from './settings';
+import {stateContains} from "./util";
 
 export let model;
-const main = (inFocusMode = false) => {
-    const doc = document
-    let toggleOn = inFocusMode;
-
-    if (logseq.settings.focus_on_startup) {
-        logseq.App.setFullScreen(logseq.settings.go_fullscreen);
-    } else {
-        logseq.App.setFullScreen(false);
-    }
-
-    render(<App/>, doc.querySelector('#app'))
+const main = () => {
+    settingUI();
+    let toggleOn = stateContains("on_startup", "Enter Focus Mode");
+    logseq.App.setFullScreen(toggleOn);
 
     model = {
-        toggleFocus(toggle = true) {
+        toggleFocus() {
+            toggleOn = !toggleOn;
 
-            if (toggle) {
-                toggleOn = !toggleOn;
-
-                if (logseq.settings.go_fullscreen) {
-                    logseq.App.setFullScreen(toggleOn);
-                }
+            if (stateContains("on_toggle", "Toggle Fullscreen Mode")) {
+                logseq.App.setFullScreen(toggleOn);
             }
 
             if (toggleOn) {
-                if (logseq.settings.hide_sidebar) {
+                if (stateContains("on_focus", "Hide Left Sidebar")) {
                     logseq.App.setLeftSidebarVisible(false);
                 }
 
-                if (logseq.settings.hide_right_sidebar) {
+                if (stateContains("on_focus", "Hide Right Sidebar")) {
                     logseq.App.setRightSidebarVisible(false);
                 }
 
-                if(logseq.settings.line_highlight) {
+                if (stateContains("on_focus", "Hide Help")) {
+                    logseq.provideStyle(`.cp__sidebar-help-btn { display: none; }`);
+                }
+
+                if (stateContains("on_toggle", "Toggle Line Highlight")) {
                     logseq.provideStyle(`
                     .block-content-wrapper {
                       opacity: 35%;
@@ -58,7 +51,7 @@ const main = (inFocusMode = false) => {
                    `)
                 }
 
-                if(logseq.settings.hide_topbar) {
+                if (stateContains("on_toggle", "Toggle Top Bar")) {
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
@@ -77,18 +70,34 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 }
+
+                if (stateContains("on_focus", "Custom Hide Elements")) {
+                    if (logseq.settings.custom_hide_on_focus) {
+                        logseq.provideStyle(`${logseq.settings.custom_hide_on_focus} { display: none; }`);
+                    }
+                }
             }
 
             if (!toggleOn) {
-                if (logseq.settings.open_left_sidebar_on_unfocus) {
+                if (stateContains("on_unfocus", "Show Left Sidebar")) {
                     logseq.App.setLeftSidebarVisible(true);
                 }
 
-                if (logseq.settings.open_right_sidebar_on_unfocus) {
+                if (stateContains("on_unfocus", "Show Help")) {
+                    logseq.provideStyle(`.cp__sidebar-help-btn { display: block; }`);
+                }
+
+                if (stateContains("on_unfocus", "Show Right Sidebar")) {
                     logseq.App.setRightSidebarVisible(true);
                 }
 
-                if(logseq.settings.line_highlight) {
+                if (stateContains("on_unfocus", "Custom Show Elements")) {
+                    if (logseq.settings.custom_show_on_unfocus) {
+                        logseq.provideStyle(`${logseq.settings.custom_show_on_unfocus} { display: block; }`);
+                    }
+                }
+
+                if (stateContains("on_toggle", "Toggle Line Highlight")) {
                     logseq.provideStyle(`
                     .block-content-wrapper {
                       opacity: 100%;
@@ -99,8 +108,8 @@ const main = (inFocusMode = false) => {
                     }
                    `)
                 }
-                
-                if(logseq.settings.hide_topbar) {
+
+                if (stateContains("on_toggle", "Toggle Top Bar")) {
                     logseq.provideStyle(`
                     div#head:hover {
                         opacity: 1; 
@@ -112,24 +121,14 @@ const main = (inFocusMode = false) => {
                 }
             }
 
-            if (logseq.settings.hide_properties) {
+            if (stateContains("on_toggle", "Toggle Page Properties")) {
                 logseq.provideStyle(`
                       html.is-fullscreen .pre-block {
                         display: ${toggleOn ? 'none' : 'block'}
                       }
                 `);
             }
-        },
-        openFontsPanel(e) {
-            const {rect} = e
-
-            logseq.setMainUIInlineStyle({
-                top: `${rect.top + 25}px`,
-                left: `${rect.right - 17}px`,
-            })
-
-            logseq.toggleMainUI()
-        },
+        }
     };
     logseq.provideModel(model)
 
@@ -145,19 +144,25 @@ const main = (inFocusMode = false) => {
         }
   `)
 
-    logseq.setMainUIInlineStyle({
-        position: 'fixed',
-        width: '290px',
-        zIndex: 999,
-        transform: 'translateX(-50%)',
-    });
-
     // set default settings on initialization
     if(!logseq.settings.init) {
         updateLogseqState({
-            fullscreen: true,
-            keyboard: 'f f',
-            init: true
+            init: true,
+            keyboard: "f f",
+            on_startup: [
+                "Enter Focus Mode"
+            ],
+            on_toggle: [
+                "Toggle Fullscreen Mode"
+            ],
+            on_focus: [
+                "Hide Left Sidebar",
+                "Hide help"
+            ],
+            on_unfocus: [
+                "Show Left Sidebar",
+                "Show help"
+            ]
         });
     }
 
@@ -186,21 +191,8 @@ const main = (inFocusMode = false) => {
                         >
                             <i class="ti ti-maximize"></i>
                         </a>
-                         <a
-                           data-on-click="openFontsPanel"
-                           class="button"
-                           data-rect
-                        >
-                            <i class="ti ti-dots-vertical"></i>
-                        </a>
                 </span>`
         })
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            logseq.hideMainUI()
-        }
-    }, false)
 }
 
 export default main;

@@ -10,8 +10,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "@logseq/libs": "^0.0.1-alpha.32",
-    "preact": "^10.5.15"
+    "@logseq/libs": "latest"
   },
   "logseq": {
     "icon": "./icon.png",

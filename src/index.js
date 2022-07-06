@@ -1,7 +1,6 @@
 import '@logseq/libs'
-import './index.css';
 import main from "./main";
 
 logseq.ready(() => {
-    main(logseq.settings.focus_on_startup);
+    main();
 }).catch(console.error)
