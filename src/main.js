@@ -6,11 +6,12 @@ export let model;
 const main = () => {
     settingUI();
     let toggleOn = stateContains("on_startup", "Enter Focus Mode");
-    logseq.App.setFullScreen(toggleOn);
 
     model = {
-        toggleFocus() {
-            toggleOn = !toggleOn;
+        toggleFocus(toggle = true) {
+            if (toggle) {
+                toggleOn = !toggleOn;
+            }
 
             if (stateContains("on_toggle", "Toggle Fullscreen Mode")) {
                 logseq.App.setFullScreen(toggleOn);
@@ -131,6 +132,10 @@ const main = () => {
         }
     };
     logseq.provideModel(model)
+
+    if (toggleOn) {
+        model.toggleFocus(false);
+    }
 
     logseq.provideStyle(`
         .logseq-focus-toolbar {
