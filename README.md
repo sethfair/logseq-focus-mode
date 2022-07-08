@@ -1,5 +1,5 @@
 # Focus Mode
-The purpose of the Focus Mode plugin is to quickly switch into a distraction-free mode or "zen" mode.  This plugin allows you to quickly toggle into fullscreen mode and hide elements like the sidebar or properties section.
+The Focus Mode plugin for Logseq allows you to quickly switch into a distraction-free "zen" mode by toggling into full-screen and hiding elements like the sidebar or properties section.
 
 # Settings
  Settings -> Plugin Settings -> Focus Mode
