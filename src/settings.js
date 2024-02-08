@@ -21,7 +21,7 @@ export const settingUI = () => {
         {
             key: "on_focus",
             type: "enum",
-            enumChoices: ["Hide Left Sidebar", "Hide Right Sidebar", "Hide Help", "Custom Hide Elements", "Zoom"],
+            enumChoices: ["Hide Left Sidebar", "Hide Right Sidebar", "Hide Help", "Zoom", "Custom Hide Elements"],
             enumPicker: "checkbox",
             description:
                 "When entering focus mode.",
@@ -30,7 +30,7 @@ export const settingUI = () => {
         {
             key: "on_unfocus",
             type: "enum",
-            enumChoices: ["Show Left Sidebar", "Show Right Sidebar", "Show Help", "Custom Show Elements", "Unzoom"],
+            enumChoices: ["Show Left Sidebar", "Show Right Sidebar", "Show Help", "Unzoom", "Custom Show Elements"],
             enumPicker: "checkbox",
             description:
                 "When exiting focus mode.",
