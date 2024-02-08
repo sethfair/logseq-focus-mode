@@ -18,6 +18,14 @@ const main = () => {
             }
 
             if (toggleOn) {
+                // !!!
+                if (stateContains("on_focus", "Zoom")) {
+                    if (logseq.settings.zoom_factor) {
+                        logseq.App.setZoomFactor(logseq.settings.zoom_factor / 100.0);
+                    }
+                }
+                // !!!
+
                 if (stateContains("on_focus", "Hide Left Sidebar")) {
                     logseq.App.setLeftSidebarVisible(false);
                 }
@@ -80,6 +88,12 @@ const main = () => {
             }
 
             if (!toggleOn) {
+                // !!!
+                if (stateContains("on_unfocus", "Unzoom")) {
+                    logseq.App.setZoomFactor(1);
+                }
+                // !!!
+                
                 if (stateContains("on_unfocus", "Show Left Sidebar")) {
                     logseq.App.setLeftSidebarVisible(true);
                 }

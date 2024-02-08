@@ -21,7 +21,7 @@ export const settingUI = () => {
         {
             key: "on_focus",
             type: "enum",
-            enumChoices: ["Hide Left Sidebar", "Hide Right Sidebar", "Hide Help", "Custom Hide Elements"],
+            enumChoices: ["Hide Left Sidebar", "Hide Right Sidebar", "Hide Help", "Custom Hide Elements", "Zoom"],
             enumPicker: "checkbox",
             description:
                 "When entering focus mode.",
@@ -30,7 +30,7 @@ export const settingUI = () => {
         {
             key: "on_unfocus",
             type: "enum",
-            enumChoices: ["Show Left Sidebar", "Show Right Sidebar", "Show Help", "Custom Show Elements"],
+            enumChoices: ["Show Left Sidebar", "Show Right Sidebar", "Show Help", "Custom Show Elements", "Unzoom"],
             enumPicker: "checkbox",
             description:
                 "When exiting focus mode.",
@@ -57,6 +57,14 @@ export const settingUI = () => {
             description:
                 "CSS selector of elements you wish to show when exiting focus mode.",
             title: "Custom Show On Unfocus"
+        },
+        {
+            key: "zoom_factor",
+            type: "number",
+            description:
+                "Zoom factor(%) when focus mode is enabled; Only if 'Zoom' is selected on 'On Focus'",
+            default: 150,
+            title: "Zoom Factor"
         }
     ];
 
