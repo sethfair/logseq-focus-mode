@@ -17,10 +17,12 @@ The Focus Mode plugin for Logseq allows you to quickly switch into a distraction
 | Hide Right Side Bar    | On Focus    | Hide the right sidebar when you enter into focus mode.                        |
 | Hide Help              | On Focus    | Hides the help icon in the lower right corner when you enter into focus mode. |
 | Custom Hide Elements   | On Focus    | Custom CSS selector to hide elements when enter into focus mode.              |
+| Zoom                   | On Focus    | Applys custom zoom factor when enter into focus mode.                         |
 | Show Left Side Bar     | On Unfocus  | Show the right sidebar when you exit from focus mode.                         |
 | Show Right Side Bar    | On Unfocus  | Show the right sidebar when you exit from focus mode.                         |
 | Show Help              | On Unfocus  | Shows the help icon in the lower right corner when you exit from focus mode.  |
 | Custom Show Elements   | On Unfocus  | Custom CSS selector to show elements when you exit from focus mode.           |
+| Unzoom                 | On Unfocus  | Removes custom zoom factor when you exit from focus mode.                     |
 
 ## License
 

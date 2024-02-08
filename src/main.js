@@ -77,6 +77,12 @@ const main = () => {
                         logseq.provideStyle(`${logseq.settings.custom_hide_on_focus} { display: none; }`);
                     }
                 }
+
+                if (stateContains("on_focus", "Zoom")) {
+                    if (logseq.settings.zoom_factor) {
+                        logseq.App.setZoomFactor(logseq.settings.zoom_factor / 100.0);
+                    }
+                }
             }
 
             if (!toggleOn) {
@@ -119,6 +125,10 @@ const main = () => {
                         opacity: 1;  
                     }
                    `)
+                }
+                
+                if (stateContains("on_unfocus", "Unzoom")) {
+                    logseq.App.setZoomFactor(1);
                 }
             }
 
